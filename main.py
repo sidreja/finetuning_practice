@@ -50,3 +50,14 @@ def load_local_dataset(train_file, validation_file):
     return dataset
 
 def build_prompt(example: Dict[str, Any]) -> str:
+    if "instruction" in example and "output" in example:
+        return f"Instruction: {example['instruction']}\n\nResponse: {example['output']}"
+    if "input" in example and "output" in example:
+        return f"Input: {example['input']}\n\nOutput: {example['output']}"
+    if "text" in example:
+        return example["text"]
+
+    all_text = " ".join(
+        str(v) for k, v in example.items() if isinstance(v, str)
+    )
+    return all_text
