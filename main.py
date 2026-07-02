@@ -49,4 +49,4 @@ def load_local_dataset(train_file, validation_file):
     dataset = load_dataset("json", data_files=data_files) if train_file.endswith(".json") or train_file.endswith(".jsonl") else load_dataset("csv", data_files=data_files)
     return dataset
 
-def build_prompt(example: Dict[str, Any]) -> 
+def build_prompt(example: Dict[str, Any]) -> str:
